@@ -1,0 +1,23 @@
+* Component Test Analysis for Ideal Op-Amps
+
+* Test circuit with 3-terminal ideal op-amplifier
+
+.INC ../IdealOpAmp.cir
+
+* Voltage Parameters for input voltage
+.PARAM V_high 5
+.PARAM V_low -5
+
+* Generate a triangle waveform voltage input from -20V to +20V within a period of 1 ms
+Vin nIN GND DC 1 PULSE({V_low} {V_high} 0 .5m .5m 1E-10 1m)
+
+* Setup a voltage divider between the input and output with a gain of 4
+R1 nIN  nV- 2k
+R2 nOUT nV- 8k
+
+* NOTE: Make sure to have only 1 of either line uncommented
+X_opamp GND nV- nOUT IdealOpAmp
+
+* Setup a transient analysis for the first 10 ms with a step value of 0.01 ms
+.TRAN 0.01m 10m
+.end

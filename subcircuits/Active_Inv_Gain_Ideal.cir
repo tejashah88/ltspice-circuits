@@ -1,0 +1,18 @@
+* Active Inverting Gain Subcircuit using Ideal Op-amp
+
+.INC ../components/IdealOpAmp.cir
+
+* Connections:
+*   nIN = Voltage Input
+*   nOUT = Voltage Output
+
+* NOTE: The defaults for the params are necessary to prevent LTSpice from
+* complaining. It is strongly advised to explicitly declare all parameters.
+.SUBCKT Active_Inv_Gain_Ideal    nIN nOUT    PARAMS: Ri=1k Rf=1k
+
+R_i nIN nV-	 {Ri}
+R_f nV- nOUT {Rf}
+
+X_opamp GND nV- nOUT IdealOpAmp
+
+.ENDS Active_Inv_Gain_Ideal

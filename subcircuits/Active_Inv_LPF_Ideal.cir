@@ -1,0 +1,20 @@
+* Active 1st-order Inverting Low-Pass Filter Subcircuit using Ideal Op-amp
+
+.INC ../components/IdealOpAmp.cir
+
+* Connections:
+*   nIN = Voltage Input
+*   nOUT = Voltage Output
+
+* NOTE: The defaults for the params are necessary to prevent LTSpice from
+* complaining. It is strongly advised to explicitly declare all parameters.
+.SUBCKT Active_Inv_LPF_Ideal    nIN nOUT    PARAMS: Ri=1k Rf=1k Cf=1u
+
+R_i nIN nV-  {Ri}
+
+R_f nV- nOUT {Rf}
+C_f nV- nOUT {Cf}
+
+X_opamp GND nV- nOUT IdealOpAmp
+
+.ENDS Active_Inv_LPF_Ideal

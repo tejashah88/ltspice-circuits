@@ -1,0 +1,12 @@
+* Ideal 3-Terminal Op-amp
+
+* Connections:
+*   nV+ = Non-Inverting Input
+*   nV- = Inverting Input
+*   nOUT = Output
+
+.SUBCKT IdealOpAmp nV+ nV- nOUT
+    .PARAM GAIN=1E+12
+
+    E_opamp nOUT GND VALUE = {GAIN * (V(nV+) - V(nV-))}
+.ENDS IdealOpAmp
